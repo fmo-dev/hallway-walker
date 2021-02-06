@@ -1,6 +1,6 @@
 # Hallway Walker
 
-Hallway Walker is a game under construction with PhaserJS 3.24
+Hallway Walker is a game under construction with Godot v3.3
 
 ## Author
 
