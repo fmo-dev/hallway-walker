@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var weight = 12
-const GRAVITY := 163.5
+const GRAVITY := 200
 var fall_time := 0.0
 var on_floor: bool
 var velocity = Vector2(0, 0)
@@ -19,3 +19,5 @@ func fall(delta: float) -> void:
 	
 func launch(force: int, weight: int) -> void : velocity.y = -force * weight
 
+
+func switch_collision(value: bool) -> void: $CollisionShape2D.disabled = value
