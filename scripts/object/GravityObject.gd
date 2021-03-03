@@ -64,7 +64,8 @@ func inverse_move_direction() -> void: move_direction_inverted = true
 
 func synchronize_move_direction() -> void: move_direction_inverted = false
 
-func set_right_direction() -> void: if opposite_direction: new_direction() || set_opposite_direction(face_off)
+func set_right_direction() -> void: 
+	if opposite_direction: new_direction() || set_opposite_direction(face_off)
 
 func set_opposite_direction(value: bool) -> void: opposite_direction = value != face_off
 
