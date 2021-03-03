@@ -3,10 +3,12 @@ extends Node2D
 const Character = preload("res://scripts/object/characters/Character.gd")
 const JetPackState = preload("res://scenes/ui/JetPackState.tscn")
 
-const INPUTS := ["left", "right", "up", "down", "run", "jump", "dash", "climb", "attack_melee", "attack_distance"]
+const INPUTS := ["move", "run", "jump", "dash", "climb", "slide", "attack_melee", "attack_distance"]
 
 var robot := preload("res://scenes/characters/friendly/Robot.tscn").instance()
 var character: Character
+
+var last_direction_pressed: String
 
 func _ready() -> void:
 	change_character(robot)
@@ -15,28 +17,41 @@ func change_character(new_character: Character) -> void:
 	character = new_character
 	add_child(character)
 
-func _process(delta: float) -> void:
-	check_input()
+func _process(_delta: float) -> void: check_input()
 
-# INPUT
-func check_input() -> void:
-	var direction := check_direction()
-	if character.face_off != direction: character.new_direction()
-	var actions_call := []
-	var actions_released := []
-	for input in INPUTS:
-		if just_pressed(input): character.instant_action(get_input(input))
-		if pressed(input): actions_call.push_back(get_input(input))
-		elif just_released(input): actions_released.push_back(get_input(input))
-	character.set_action_called(actions_call, actions_released)
 
-func get_input(input: String) -> String: return "move" if input in ["left", "right"] else input
+##### INPUT ###################################################################################################
 
-func check_direction() -> bool:
-	if just_released("left") && pressed("right"): return true
-	elif just_released("right") && pressed("left"): return false
-	else: return false if just_pressed("left") else true if just_pressed("right") else character.face_off
+func _input(event: InputEvent) -> void: check_direction("joystick_" if event is InputEventJoypadMotion else "")
 
-func pressed(action: String) -> bool: return Input.is_action_pressed(action)
-func just_pressed(action: String) -> bool: return Input.is_action_just_pressed(action)
-func just_released(action: String) ->  bool: return Input.is_action_just_released(action)
+func check_input() -> void: for input in INPUTS: 
+	if input == 'move': 
+		var joystick_pressed = pressed("joystick_right") || pressed("joystick_left")
+		var keyboard_pressed = pressed("right") || pressed("left")
+		character.set_skill("move", joystick_pressed || keyboard_pressed)
+	else: character.set_skill(input, pressed(input))
+
+func check_direction(prefix: String) -> void:
+	character.set_opposite_direction(check_facing(prefix))
+	for direction in ["up", "down"]: character.set_skill(direction, get_strength(prefix + direction))
+		
+func check_facing(prefix: String) -> bool:
+	set_last_direction_pressed() || check_last_direction_pressed()
+	var left = get_strength(prefix + "left")
+	var right = get_strength(prefix + "right")
+	if last_direction_pressed: return last_direction_pressed == "right"
+	return left < right if left || right else character.face_off
+
+func set_last_direction_pressed() -> void:
+	for direction in ["right", "left"]: if just_pressed(direction): last_direction_pressed = direction
+
+func check_last_direction_pressed() -> void:
+	if just_released(last_direction_pressed): last_direction_pressed = ""
+	
+func pressed(input: String) -> bool: return Input.is_action_pressed(input)
+
+func just_pressed(input: String) -> bool: return Input.is_action_just_pressed(input)
+
+func just_released(input: String) -> bool: return Input.is_action_just_released(input)
+
+func get_strength(input: String) -> float: return Input.get_action_strength(input)

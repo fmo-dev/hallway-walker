@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Back" type="RayCast2D"]
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 30

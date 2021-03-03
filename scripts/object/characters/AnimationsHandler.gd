@@ -5,25 +5,22 @@ var animations: Dictionary
 var animation_to_stop: String
 
 
-func play_animation(actions: Array) -> void:
-	if !actions.size(): object.play("idle")
+func play_animation(skills: Array, on_floor: bool) -> void:
+	if !skills.size(): object.play("idle" if on_floor else "fall")
 	elif !animation_to_stop:
-		var animation = actions[0]
-		for i in range(1, actions.size()): animation += "_" + actions[i]
-		if object.animation != animation:
-			var frame = object.frame if same_animation(animation) else 0
-			object.play(animation)
-			object.frame = frame
-
+		skills.sort()
+		var animation = skills[0]
+		for i in range(1, skills.size()): animation += "_" + skills[i]
+		if object.animation != animation: object.play(animation)
+		print(same_animation(animation))
+		object.frame = object.frame if same_animation(animation) else 0
+		
+		
 func same_animation(animation: String) -> bool:
 	return animation in object.animation || object.animation in animation
 
 func play_until_the_end(animation: String) -> void: 
 	animation_to_stop = animation
-
-func animation_finished() -> void: 
-	if animation_to_stop: animation_to_stop = ""
-
 
 #func set_animations(new_animations: Array):
 #	for n in range(new_animations.size()):

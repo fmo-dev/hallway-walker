@@ -8,10 +8,10 @@
 script = ExtResource( 3 )
 
 [node name="Forest" parent="." instance=ExtResource( 1 )]
-position = Vector2( -230.781, 78.8779 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1.94669, 2.61954 )
 
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 656, 760 )
+
 [node name="Camera" type="Camera2D" parent="."]
-current = true
+visible = false

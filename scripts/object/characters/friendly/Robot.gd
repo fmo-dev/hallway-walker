@@ -25,4 +25,4 @@ extends "res://scripts/object/characters/Character.gd"
 #func stop_meleeing() -> void: 
 #	skills_table.stop_meleeing()
 #	$Melee.visible = false
-	
+

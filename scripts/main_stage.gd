@@ -8,7 +8,6 @@ func _ready() -> void:
 	current_world = $Forest
 	set_camera_limits()
 
-
 func set_camera_limits() -> void:
 	var limit = current_world.get_node("Limit")
 	camera.limit_top = limit.get_node("TopLeft").position.y
