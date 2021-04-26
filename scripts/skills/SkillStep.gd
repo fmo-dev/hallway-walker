@@ -35,6 +35,8 @@ func apply_force(velocity: Vector2) -> Vector2:
 	if force: return force.apply(velocity)
 	return velocity
 
+func is_limit_force_reached() -> bool: return force.has_reach_limit()
+	
 
 #### GETTER / SETTER 
 

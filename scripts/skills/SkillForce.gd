@@ -30,7 +30,7 @@ func set_force(value) -> Vector2:
 func apply(velocity: Vector2) -> Vector2:
 	if axes == 'all': velocity = (Vector2.ZERO if replace else velocity) + current_force
 	else: 
-		velocity[axes] = 0 if replace else velocity[axes]
+		if replace: velocity[axes] = 0
 		velocity[axes] += current_force[axes]
 	if variation :
 		if current_force != limit_force: current_force -= variation

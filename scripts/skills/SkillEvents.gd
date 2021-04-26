@@ -1,10 +1,8 @@
 extends Node
 
-const Character = preload("res://scripts/object/characters/Character.gd")
+var character
 
-var character: Character
-
-func _init(new_character: Character):
+func _init(new_character):
 	character = new_character
 
 ### FALL

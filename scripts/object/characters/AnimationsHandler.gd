@@ -4,22 +4,23 @@ var object: AnimatedSprite
 var animations: Dictionary
 var animation_to_stop: String
 
-
 func play_animation(skills: Array, on_floor: bool) -> void:
 	if !skills.size(): object.play("idle" if on_floor else "fall")
 	elif !animation_to_stop:
 		skills.sort()
 		var animation = skills[0]
 		for i in range(1, skills.size()): animation += "_" + skills[i]
-		if object.animation != animation: object.play(animation)
-		print(same_animation(animation))
-		object.frame = object.frame if same_animation(animation) else 0
-		
-		
+		if animation != object.animation:
+			if !on_floor && animation in ["run", "move"]: animation = "fall"
+			if object.animation != animation: 
+				var frame = object.frame  if same_animation(animation) else 0
+				object.play(animation)
+				object.frame = frame
+
 func same_animation(animation: String) -> bool:
 	return animation in object.animation || object.animation in animation
 
-func play_until_the_end(animation: String) -> void: 
+func play_until_the_end(animation: String) -> void:
 	animation_to_stop = animation
 
 #func set_animations(new_animations: Array):

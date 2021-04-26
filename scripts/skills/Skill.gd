@@ -1,12 +1,16 @@
 extends Node
 
-const SkillStep = preload("res://scripts/skills/SkillStep.gd") 
+const SkillStep = preload("res://scripts/skills/SkillStep.gd")
+const SkillCredit = preload("res://scripts/skills/SkillCredit.gd")
 
 var activated := false setget set_activated, is_activated
 var other_actions := [] setget set_other_actions, get_other_actions
 var replaced_by := [] setget set_replaced_by, get_replaced_by
 var instant := false setget set_instant, is_instant
 var stop_on_release := false setget set_stop_on_release, is_stop_on_release
+
+var credit: SkillCredit setget ,get_credit
+
 
 ### TO RESET
 var in_use := false setget set_in_use, is_in_use
@@ -36,6 +40,7 @@ func _init(data: Dictionary) -> void:
 	if data.get("activated"): set_activated(data.activated)
 	if data.get("other_actions"): set_other_actions(data.other_actions)
 	if data.get("replaced_by"): set_replaced_by(data.replaced_by)
+	if data.get("credit"): set_credit(data.credit)
 	if data.get("instant"): set_instant(data.instant)
 	if data.get("stop_on_release"): set_stop_on_release(data.stop_on_release)
 	if data.get("start_needs"): set_start_needs(data.start_needs)
@@ -57,8 +62,9 @@ func reset() -> void:
 	for step in steps: step.reset()
 
 func get_current_step() -> SkillStep:
-	if !started: 
+	if !started:
 		started = true
+		use_credit()
 		if start: return start
 	for step in steps: if !step.is_passed(): return step
 	stopped = true
@@ -67,6 +73,15 @@ func get_current_step() -> SkillStep:
 func pass_all() -> void: for step in steps: step.passed = true
 
 func reset_steps() -> void: for step in steps: step.passed = false
+
+func is_limit_force_reached() -> bool: 
+	var current_step: SkillStep
+	for step in steps: 
+		if !step.is_passed(): 
+			current_step = step
+			break
+	if !current_step: return false
+	else : return current_step.is_limit_force_reached()
 
 #### GETTER / SETTER
 
@@ -78,6 +93,9 @@ func get_other_actions() -> Array: return other_actions
 
 func set_replaced_by(value: Array) -> void: replaced_by = value
 func get_replaced_by() -> Array: return replaced_by
+
+func set_credit(value: Dictionary) -> void: credit = SkillCredit.new(value)
+func get_credit() -> SkillCredit: return credit
 
 func set_instant(value: bool) -> void: instant = value
 func is_instant() -> bool: return instant
@@ -130,3 +148,8 @@ func get_steps() -> Array: return steps
 func set_stop(value: Dictionary) -> void: stop = SkillStep.new(value, false)
 
 func get_stop() -> SkillStep: return stop
+
+func use_credit() -> void: if credit != null: credit.use()
+
+func refill_credit(character_ref) -> void: 
+	if credit != null: credit.refill(character_ref)

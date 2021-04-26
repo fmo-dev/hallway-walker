@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=2]
+[gd_scene load_steps=137 format=2]
 
 [ext_resource path="res://assets/characters/custom/robot/animations/jump/jump2.png" type="Texture" id=1]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-idle-00.png" type="Texture" id=2]
@@ -27,7 +27,6 @@
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-bow-01.png" type="Texture" id=25]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-slide-01.png" type="Texture" id=26]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-bow-jump-00.png" type="Texture" id=27]
-[ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-attack2-02.png" type="Texture" id=28]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-slide-00.png" type="Texture" id=29]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-bow-00.png" type="Texture" id=30]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-die-03.png" type="Texture" id=31]
@@ -60,8 +59,6 @@
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-crouch-03.png" type="Texture" id=58]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-crouch-01.png" type="Texture" id=59]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-crouch-02.png" type="Texture" id=60]
-[ext_resource path="res://scenes/utilities/collisions/BackCollision.tscn" type="PackedScene" id=61]
-[ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-attack2-01.png" type="Texture" id=62]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-ladder-climb-03.png" type="Texture" id=65]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-ladder-climb-02.png" type="Texture" id=68]
 [ext_resource path="res://assets/characters/Adventurer/Individual Sprites/adventurer-ladder-climb-00.png" type="Texture" id=69]
@@ -147,39 +144,9 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 90 ), ExtResource( 56 ), ExtResource( 87 ), ExtResource( 96 ), ExtResource( 88 ) ],
-"loop": true,
-"name": "walk_jump_shoot",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 112 ), ExtResource( 105 ), ExtResource( 128 ), ExtResource( 98 ), ExtResource( 109 ) ],
-"loop": true,
-"name": "run_shoot",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 139 ) ],
-"loop": true,
-"name": "wall_hook",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 91 ), ExtResource( 92 ), ExtResource( 94 ), ExtResource( 93 ), ExtResource( 97 ) ],
 "loop": true,
 "name": "melee",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 49 ), ExtResource( 1 ), ExtResource( 51 ), ExtResource( 95 ), ExtResource( 89 ) ],
-"loop": false,
-"name": "jump",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 143 ), ExtResource( 142 ), ExtResource( 140 ), ExtResource( 141 ) ],
-"loop": true,
-"name": "wall_climb",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 129 ), ExtResource( 106 ), ExtResource( 102 ), ExtResource( 130 ), ExtResource( 131 ) ],
-"loop": true,
-"name": "walk",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 121 ), ExtResource( 100 ), ExtResource( 104 ), ExtResource( 114 ), ExtResource( 101 ) ],
@@ -187,15 +154,45 @@ animations = [ {
 "name": "run_melee",
 "speed": 12.0
 }, {
+"frames": [ ExtResource( 129 ), ExtResource( 106 ), ExtResource( 102 ), ExtResource( 130 ), ExtResource( 131 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 144 ), ExtResource( 147 ), ExtResource( 145 ), ExtResource( 146 ) ],
+"loop": true,
+"name": "wall_climb_finish",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 90 ), ExtResource( 56 ), ExtResource( 87 ), ExtResource( 96 ), ExtResource( 88 ) ],
+"loop": true,
+"name": "walk_jump_shoot",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 117 ), ExtResource( 110 ), ExtResource( 123 ), ExtResource( 108 ), ExtResource( 126 ) ],
 "loop": true,
 "name": "run",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 90 ), ExtResource( 56 ), ExtResource( 87 ), ExtResource( 96 ), ExtResource( 88 ) ],
+"frames": [ ExtResource( 112 ), ExtResource( 105 ), ExtResource( 128 ), ExtResource( 98 ), ExtResource( 109 ) ],
 "loop": true,
-"name": "jump_shoot",
+"name": "run_shoot",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 90 ), ExtResource( 56 ), ExtResource( 87 ), ExtResource( 96 ), ExtResource( 88 ) ],
+"loop": false,
+"name": "run_jump_shoot",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 119 ), ExtResource( 116 ), ExtResource( 120 ), ExtResource( 103 ), ExtResource( 127 ) ],
+"loop": true,
+"name": "walk_shoot",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 143 ), ExtResource( 142 ), ExtResource( 140 ), ExtResource( 141 ) ],
+"loop": true,
+"name": "wall_climb",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 122 ), ExtResource( 111 ), ExtResource( 118 ), ExtResource( 132 ), ExtResource( 115 ) ],
 "loop": true,
@@ -203,13 +200,18 @@ animations = [ {
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 90 ), ExtResource( 56 ), ExtResource( 87 ), ExtResource( 96 ), ExtResource( 88 ) ],
-"loop": false,
-"name": "run_jump_shoot",
+"loop": true,
+"name": "jump_shoot",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 144 ), ExtResource( 147 ), ExtResource( 145 ), ExtResource( 146 ) ],
+"frames": [ ExtResource( 49 ), ExtResource( 1 ), ExtResource( 51 ), ExtResource( 95 ), ExtResource( 89 ) ],
+"loop": false,
+"name": "jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 124 ), ExtResource( 125 ), ExtResource( 99 ), ExtResource( 113 ), ExtResource( 107 ) ],
 "loop": true,
-"name": "wall_climb_finish",
+"name": "walk_melee",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 138 ), ExtResource( 137 ), ExtResource( 133 ), ExtResource( 136 ) ],
@@ -217,15 +219,10 @@ animations = [ {
 "name": "jetpack",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 119 ), ExtResource( 116 ), ExtResource( 120 ), ExtResource( 103 ), ExtResource( 127 ) ],
+"frames": [ ExtResource( 139 ) ],
 "loop": true,
-"name": "walk_shoot",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 124 ), ExtResource( 125 ), ExtResource( 99 ), ExtResource( 113 ), ExtResource( 107 ) ],
-"loop": true,
-"name": "walk_melee",
-"speed": 10.0
+"name": "wall_hook",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -240,99 +237,14 @@ animations = [ {
 "name": "idle",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 36 ), ExtResource( 43 ), ExtResource( 33 ), ExtResource( 50 ) ],
-"loop": true,
-"name": "move",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 47 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "jump",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 36 ), ExtResource( 43 ), ExtResource( 33 ), ExtResource( 50 ) ],
 "loop": true,
-"name": "run",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 44 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 37 ), ExtResource( 48 ) ],
-"loop": true,
-"name": "jump_shoot",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 30 ), ExtResource( 25 ), ExtResource( 41 ), ExtResource( 55 ), ExtResource( 46 ), ExtResource( 16 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 35 ) ],
-"loop": true,
-"name": "shoot",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 45 ), ExtResource( 57 ), ExtResource( 45 ), ExtResource( 57 ) ],
-"loop": true,
-"name": "wall_jump",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 30 ), ExtResource( 25 ), ExtResource( 41 ), ExtResource( 55 ), ExtResource( 46 ), ExtResource( 16 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 35 ) ],
-"loop": true,
-"name": "move_shoot",
-"speed": 12.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "dash",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 47 ) ],
-"loop": true,
-"name": "fall_move",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "jump_move",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 19 ), ExtResource( 62 ), ExtResource( 28 ), ExtResource( 15 ), ExtResource( 40 ), ExtResource( 39 ) ],
-"loop": false,
-"name": "attack_melee",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 44 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 37 ), ExtResource( 48 ) ],
-"loop": true,
-"name": "jump_move_shoot",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 71 ) ],
-"loop": true,
-"name": "climb",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 54 ), ExtResource( 34 ), ExtResource( 52 ), ExtResource( 31 ), ExtResource( 38 ), ExtResource( 17 ), ExtResource( 32 ) ],
-"loop": true,
-"name": "dead",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "attack_melee_jump",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 68 ), ExtResource( 65 ), ExtResource( 69 ), ExtResource( 71 ) ],
-"loop": true,
-"name": "escalade",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 69 ), ExtResource( 65 ), ExtResource( 68 ), ExtResource( 71 ) ],
-"loop": true,
-"name": "descend",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 58 ) ],
-"loop": true,
-"name": "down",
+"name": "move",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 73 ), ExtResource( 74 ) ],
@@ -340,25 +252,110 @@ animations = [ {
 "name": "wall_slide",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "jump_run",
+"frames": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 36 ), ExtResource( 43 ), ExtResource( 33 ), ExtResource( 50 ) ],
+"loop": true,
+"name": "run",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 25 ), ExtResource( 41 ), ExtResource( 55 ), ExtResource( 46 ), ExtResource( 16 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "jump",
+"speed": 12.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "dash",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 58 ) ],
+"loop": true,
+"name": "down",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 47 ) ],
 "loop": true,
 "name": "fall_run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 30 ), ExtResource( 25 ), ExtResource( 41 ), ExtResource( 55 ), ExtResource( 46 ), ExtResource( 16 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 35 ) ],
+"frames": [ ExtResource( 69 ), ExtResource( 65 ), ExtResource( 68 ), ExtResource( 71 ) ],
+"loop": true,
+"name": "descend",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 68 ), ExtResource( 65 ), ExtResource( 69 ), ExtResource( 71 ) ],
+"loop": true,
+"name": "escalade",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 47 ) ],
+"loop": true,
+"name": "fall_move",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 41 ), ExtResource( 55 ), ExtResource( 46 ), ExtResource( 16 ), ExtResource( 53 ), ExtResource( 35 ) ],
 "loop": false,
 "name": "attack_distance",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "jump_run",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 25 ), ExtResource( 41 ), ExtResource( 55 ), ExtResource( 46 ), ExtResource( 16 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "move_shoot",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 44 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 37 ), ExtResource( 48 ) ],
+"loop": true,
+"name": "attack_distance_jump_move",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 54 ), ExtResource( 34 ), ExtResource( 52 ), ExtResource( 31 ), ExtResource( 38 ), ExtResource( 17 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "dead",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "jump_move",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "attack_melee_jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 45 ), ExtResource( 57 ), ExtResource( 45 ), ExtResource( 57 ) ],
+"loop": true,
+"name": "wall_jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 71 ) ],
+"loop": true,
+"name": "climb",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 27 ), ExtResource( 44 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 37 ), ExtResource( 48 ) ],
 "loop": false,
 "name": "attack_distance_jump",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 15 ), ExtResource( 40 ), ExtResource( 39 ) ],
+"loop": false,
+"name": "attack_melee",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 73 ) ],
+"loop": true,
+"name": "hang",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -377,7 +374,8 @@ radius = 30.9825
 height = 53.9287
 
 [node name="Robot" type="KinematicBody2D"]
-collision_mask = 2
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 82 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -404,15 +402,14 @@ enabled = true
 collision_mask = 15
 
 [node name="Body" type="AnimatedSprite" parent="."]
-position = Vector2( 13.2433, -5.2973 )
+position = Vector2( 0.756637, -0.540479 )
 scale = Vector2( 4.67348, 5.01476 )
 frames = SubResource( 2 )
-animation = "attack_distance_jump"
-frame = 5
+animation = "hang"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 11, 12 )
+position = Vector2( 0.891754, 16.7568 )
 scale = Vector2( 1, 0.957202 )
 shape = SubResource( 3 )
 one_way_collision_margin = 0.0
@@ -432,16 +429,10 @@ scale = Vector2( 3, 3 )
 frames = SubResource( 4 )
 
 [node name="Melee" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Melee"]
 visible = false
-position = Vector2( 82.254, -12.3666 )
+position = Vector2( 67.3889, 14.9852 )
 shape = SubResource( 5 )
-
-[node name="Back" parent="." instance=ExtResource( 61 )]
-visible = false
-position = Vector2( 13.2433, -5.2973 )
-scale = Vector2( 9.34696, 5.01476 )
 [connection signal="animation_finished" from="Body" to="." method="_on_OLD_AnimatedSprite_animation_finished"]
 [connection signal="animation_finished" from="Bullet/Muzzle" to="." method="_on_Muzzle_animation_finished"]
