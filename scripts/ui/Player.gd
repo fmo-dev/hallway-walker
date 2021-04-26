@@ -24,7 +24,8 @@ func change_character(new_character: Character) -> void:
 func _physics_process(_delta: float) -> void: check_input()
 
 ##### INPUT ###################################################################################################
-func _input(event: InputEvent) -> void: check_direction("joystick_" if event is InputEventJoypadMotion else "")
+func _input(event: InputEvent) -> void: 
+	check_direction("joystick_" if event is InputEventJoypadMotion else "")
 
 func check_input() -> void:
 	for input in INPUTS:

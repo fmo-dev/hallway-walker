@@ -262,7 +262,7 @@ var skills: Dictionary = {
 	"air_jump": Skill.new({
 		"activated": true,
 		"instant": true,
-		"start_conditions": ["not_on_floor", "not_on_wall"],
+		"start_conditions": ["not_on_floor", "not_on_wall", "not_on_ceiling"],
 		"stop_conditions": ["on_floor", "on_ceiling"],
 		"blocked_by": ["climb", "dash"],
 		"credit": {
@@ -570,5 +570,8 @@ func stop_skills() -> void: for skill in skills: if skills[skill].is_stopped(): 
 
 ###### UTILS #####################################################################
 
+func get_skill(skill: String) -> SkillCredit: 
+	return skills[skill]
+	
 func get_skill_credit(skill: String) -> SkillCredit: 
 	return skills[skill].get_credit()

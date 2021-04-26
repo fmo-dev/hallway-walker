@@ -25,4 +25,6 @@ func top_limit_on_wall() -> bool: return character.is_top_limit_on_wall()
 
 func on_ceiling() -> bool: return character.is_on_ceiling()
 
+func not_on_ceiling() -> bool: return !on_ceiling()
+
 func opposite_direction() -> bool: return character.get_opposite_direction()

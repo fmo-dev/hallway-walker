@@ -4,8 +4,10 @@ var object: AnimatedSprite
 var animations: Dictionary
 var animation_to_stop: String
 
-func play_animation(skills: Array, on_floor: bool) -> void:
-	if !skills.size(): object.play("idle" if on_floor else "fall")
+func play_animation(skills: Array, on_floor: bool, top_colliding: bool) -> void:
+	if !skills.size(): 
+		if on_floor: object.play("down" if top_colliding else "idle")
+		else: object.play("fall")
 	elif !animation_to_stop:
 		skills.sort()
 		var animation = skills[0]

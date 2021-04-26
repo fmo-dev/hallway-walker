@@ -60,6 +60,7 @@ func is_top_on_wall() -> bool:
 func is_top_limit_on_wall() -> bool: 
 	return check_collision("top_" + get_direction() + "_limit")
 
+func is_on_ceiling() -> bool: return collisions.top_colliding()
 
 #### COLLISION SHAPE 
 
@@ -92,9 +93,7 @@ func set_right_direction() -> void:
 	if opposite_direction && !move_direction_inverted: 
 		new_direction() || set_opposite_direction(face_off)
 
-func set_opposite_direction(value: bool) -> void: 
-	synchronize_move_direction()
-	opposite_direction = value != face_off
+func set_opposite_direction(value: bool) -> void: opposite_direction = value != face_off
 
 func get_opposite_direction() -> bool: return opposite_direction
 
